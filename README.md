@@ -33,6 +33,8 @@ Make sure you have VSCode, this will make your life very easy when developing. A
 
 To get this project into your VSCode, get into an empty folder, and then open the terminal and type in `git clone https://gitlab.com/crunchyice/tide-share.git`. This will clone the repository into your empty folder. Then, `cd tide-share` into the folder and then use the command `code .` to automatically open up a new VSCode windows within the folder. 
 
+Following this, run `npm install` and `npx prisma generate`. Once these commands run, run `npm run dev` and navigate to http://localhost:3000 to look at a live, local instance of the application you are running. 
+
 Explore the project and try to get a feel of the structure.
 
 ## Committing and Pushing a change in the code 
