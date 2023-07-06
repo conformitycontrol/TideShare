@@ -44,7 +44,19 @@ Explore the project and try to get a feel of the structure.
 
 ## Project structure
 
-Will add to this section. 
+`prisma`: holds database schemas, which layout the grounds for what each model in our database should look like and each type for all aspects of that model 
+
+`public`: holds any media we need like images or icons we need. This would hold static media that would not change 
+
+`src`: holds the `pages` and `api` folders as well as others, along with the main `_app.tsx` file. This is where all the main code will go, and routes all the pages. All new pages will go into the pages folder.
+
+`server`: will hold routers for posts and users, along with the primary router. Will not have to worry until cloud instance and database is set up.
+
+`styles`: holds all global styles we can use. Will probably not use this folder because we are using styleable components from Material UI 
+
+`utils`: This folder will hold the client-side entrypoint for tRPC router 
+
+`.env`: holds all constant and global environment variables such as secret keys and database URLs
 
 ## Committing and Pushing a change in the code 
 
