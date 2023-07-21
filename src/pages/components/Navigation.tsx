@@ -1,8 +1,4 @@
-import {
-  SignInButton,
-  SignOutButton,
-  useUser,
-} from "@clerk/nextjs";
+import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import Head from "next/head";
 import { AppBar, Toolbar, Container, Box, Button } from "@mui/material";
 import Link from "@mui/material/Link";
@@ -25,16 +21,48 @@ export default function Navigation() {
             </Link>
           </Box>
           <Container sx={{ ml: 3 }}>
-            <Link underline="none" color="inherit" href="./CreatePost" fontSize="inherit">
-              ABOUT US
+            <Link
+              underline="none"
+              color="inherit"
+              href="./CreatePost"
+              fontSize="inherit"
+              sx={{
 
+              }}
+            >
+              ABOUT US
             </Link>
+
+            {!!user.isSignedIn && (
+              <Link
+                underline="none"
+                color="inherit"
+                href="./CreatePost"
+                fontSize="inherit"
+                sx={{
+                  ml: 3
+                }}
+              >
+                YOUR POSTS
+              </Link>
+            )}
           </Container>
           <Box>
-
             <Link underline="none" href="#" color="inherit">
-              {!user.isSignedIn && <SignInButton><Button  color="inherit" variant="text">Sign in</Button></SignInButton>}
-              {!!user.isSignedIn && <SignOutButton><Button color="inherit" variant="contained">Sign out</Button></SignOutButton>}
+              {!user.isSignedIn && (
+                <SignInButton>
+                  <Button color="inherit" variant="text">
+                    Sign in
+                  </Button>
+                </SignInButton>
+              )}
+              {!!user.isSignedIn && (
+                <SignOutButton>
+                  <Button color="inherit" variant="text">
+                    Logout
+                  </Button>
+                </SignOutButton>
+              )}
             </Link>
           </Box>
         </Toolbar>
