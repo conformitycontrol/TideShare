@@ -17,7 +17,7 @@ export default function Home() {
       <Navigation />
         <Container sx={{ mt: 15 }}>
           <Link href="./CreatePost" color="inherit">
-            <Button variant="outlined">Create Post</Button>
+            {!!user.isSignedIn && <Button variant="outlined">Post</Button>}
           </Link>
         </Container>
     </>

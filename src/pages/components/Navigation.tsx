@@ -37,7 +37,7 @@ export default function Navigation() {
               <Link
                 underline="none"
                 color="inherit"
-                href="./CreatePost"
+                href="./YourPosts"
                 fontSize="inherit"
                 sx={{
                   ml: 3
