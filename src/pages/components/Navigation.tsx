@@ -26,9 +26,7 @@ export default function Navigation() {
               color="inherit"
               href="./CreatePost"
               fontSize="inherit"
-              sx={{
-
-              }}
+              sx={{}}
             >
               ABOUT US
             </Link>
@@ -40,7 +38,7 @@ export default function Navigation() {
                 href="./YourPosts"
                 fontSize="inherit"
                 sx={{
-                  ml: 3
+                  ml: 3,
                 }}
               >
                 YOUR POSTS

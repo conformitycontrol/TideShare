@@ -15,11 +15,11 @@ export default function Home() {
   return (
     <>
       <Navigation />
-        <Container sx={{ mt: 15 }}>
-          <Link href="./CreatePost" color="inherit">
-            {!!user.isSignedIn && <Button variant="outlined">Post</Button>}
-          </Link>
-        </Container>
+      <Container sx={{ mt: 15 }}>
+        <Link href="./CreatePost" color="inherit">
+          {!!user.isSignedIn && <Button variant="outlined">Post</Button>}
+        </Link>
+      </Container>
     </>
   );
 }
