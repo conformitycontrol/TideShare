@@ -20,13 +20,13 @@ export default function Navigation() {
               <h1>TIDESHARE</h1>
             </Link>
           </Box>
-          <Container sx={{ ml: 3 }}>
+          <Container sx={{ ml: 3, justifyContent: "center", alignItems: "center" }}>
             <Link
               underline="none"
               color="inherit"
-              href="./CreatePost"
+              href="./AboutUs"
               fontSize="inherit"
-              sx={{}}
+              sx={{ justifyContent: "center" }}
             >
               ABOUT US
             </Link>
