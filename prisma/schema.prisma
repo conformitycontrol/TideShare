@@ -21,3 +21,8 @@ model Post {
   size        String
   description String
 }
+
+model example {
+  id    Int     @id @default(autoincrement())
+  name  String
+}
