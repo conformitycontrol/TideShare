@@ -4,20 +4,39 @@ import type { AppProps } from "next/app";
 import { createTheme } from "@mui/material"; 
 import { ThemeProvider } from "@emotion/react";
 
-const theme = createTheme({
+const themeDark = createTheme({
+
+  breakpoints: {
+  values: {
+    xs: 0,
+    sm: 600,
+    md: 900,
+    lg: 1200,
+    xl: 1536,
+  },
+  },
+  typography: {
+    "fontFamily": "monospace"
+  },
   palette: {
-    background: {
-      default: "#f5eed5"
-    },
     primary: {
-      main: "#f5eed5"
-    }
-  }
-})
+      main: "#042440"
+    },
+    secondary: {
+      main: "#ffffff"
+    },
+    background: {
+      default: "#042440",
+    },
+    text: {
+      primary: "#ffffff",
+    },
+  },
+});
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={themeDark}>
       <ClerkProvider {...pageProps}>
         <Component {...pageProps} />
       </ClerkProvider>
