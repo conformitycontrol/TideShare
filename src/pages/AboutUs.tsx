@@ -19,7 +19,7 @@ export default function AboutUs() {
       <Container disableGutters maxWidth="lg" sx={{ mt: 10 }}>
         <Box sx={{ p: 10 }}>
           <Typography variant="h2" sx={{}}>
-            SURF MORE
+            SURF LESS
           </Typography>
           <Typography variant="h2"> + OWN LESS.</Typography>
           <Box sx={{ width: "450px", mb: 3 }}>

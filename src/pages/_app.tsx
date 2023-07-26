@@ -29,7 +29,7 @@ const themeDark = createTheme({
       default: "#042440",
     },
     text: {
-      primary: "#ffffff",
+      primary: "#000000",
     },
   },
 });
