@@ -1,7 +1,8 @@
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import Head from "next/head";
-import { AppBar, Toolbar, Container, Box, Button } from "@mui/material";
+import { AppBar, Toolbar, Container, Box, Button, Icon, Stack } from "@mui/material";
 import Link from "@mui/material/Link";
+import WavesIcon from '@mui/icons-material/Waves';
 
 export default function Navigation() {
   const user = useUser();
@@ -17,7 +18,10 @@ export default function Navigation() {
         <Toolbar>
           <Box>
             <Link href="/" color="inherit" underline="none">
-              <h1>TIDESHARE</h1>
+              <Stack direction="row-reverse" >
+                <Box sx={{ fontSize: "3ex", ml: 1 }}>TIDESHARE</Box>
+                <WavesIcon />
+              </Stack>
             </Link>
           </Box>
           <Container sx={{ ml: 3, justifyContent: "center", alignItems: "center" }}>
