@@ -1,6 +1,6 @@
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import Head from "next/head";
-import { AppBar, Toolbar, Container, Box, Button, Icon, Stack } from "@mui/material";
+import { AppBar, Toolbar, Container, Box, Button, Icon, Stack, Typography } from "@mui/material";
 import Link from "@mui/material/Link";
 import WavesIcon from '@mui/icons-material/Waves';
 
@@ -19,7 +19,9 @@ export default function Navigation() {
           <Box>
             <Link href="/" color="inherit" underline="none">
               <Stack direction="row-reverse" >
-                <Box sx={{ fontSize: "3ex", ml: 1 }}>TIDESHARE</Box>
+                <Box sx={{ fontSize: "3ex", ml: 1 }}>
+                  <Typography fontSize={"2.5"}>TIDESHARE</Typography>
+                  </Box>
                 <WavesIcon />
               </Stack>
             </Link>
@@ -60,7 +62,13 @@ export default function Navigation() {
               )}
               {!!user.isSignedIn && (
                 <SignOutButton>
-                  <Button color="inherit" variant="text">
+                  <Button color="inherit" variant="outlined" 
+                    sx={{
+                      ":hover": {
+                        bgcolor: "peachpuff",
+                        color: "black"
+                      }
+                    }}>
                     Logout
                   </Button>
                 </SignOutButton>

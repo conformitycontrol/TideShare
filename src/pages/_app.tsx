@@ -16,11 +16,11 @@ const themeDark = createTheme({
   },
   },
   typography: {
-    "fontFamily": "monospace"
+    "fontFamily": "unset"
   },
   palette: {
     primary: {
-      main: "#042440"
+      main: "#002546"
     },
     secondary: {
       main: "#ffffff"
