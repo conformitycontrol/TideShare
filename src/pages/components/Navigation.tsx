@@ -46,8 +46,12 @@ export default function Navigation() {
           <Box>
             <Link href="/" color="inherit" underline="none">
               <Stack direction="row-reverse">
-                <Box sx={{ fontSize: "3ex", ml: 1 }}>TIDESHARE</Box>
+                <Box sx={{ fontSize: "3ex", ml: 1, display: "flex", justifyContent: "center" }}>
+                  <Typography sx={{ fontSize: "3ex" }}>TIDESHARE</Typography>
+                  </Box>
+                  <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <WavesIcon />
+                </Box>
               </Stack>
             </Link>
           </Box>
@@ -61,7 +65,9 @@ export default function Navigation() {
               fontSize="inherit"
               sx={{ justifyContent: "center" }}
             >
-              ABOUT US
+              <Typography sx={{ justifyContent: "flex-end", display: "flex", fontSize: "3ex"}}>
+                About Us
+              </Typography>
             </Link>
           </Container>
           <Box>
