@@ -29,7 +29,7 @@ export default function AboutUs() {
             </Typography>
 
             <Link href="#">
-              <Button variant="contained" sx={{ mt: 2 }}>
+              <Button href="./ContactUs" variant="contained" sx={{ mt: 2 }}>
                 Contact us
               </Button>
               <Button variant="contained" sx={{ mt: 2, ml: 2 }}>
