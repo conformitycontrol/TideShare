@@ -1,4 +1,10 @@
-import { SignInButton, SignOutButton, useClerk, useUser } from "@clerk/nextjs";
+import {
+  SignIn,
+  SignInButton,
+  SignOutButton,
+  useClerk,
+  useUser,
+} from "@clerk/nextjs";
 import Head from "next/head";
 import {
   AppBar,
@@ -19,7 +25,6 @@ import React from "react";
 import { AccountCircle } from "@mui/icons-material";
 
 export default function Navigation() {
-
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -33,7 +38,7 @@ export default function Navigation() {
   const { signOut } = useClerk();
 
   const { isSignedIn, user } = useUser();
-  
+
   return (
     <>
       <Head>
@@ -46,11 +51,24 @@ export default function Navigation() {
           <Box>
             <Link href="/" color="inherit" underline="none">
               <Stack direction="row-reverse">
-                <Box sx={{ fontSize: "3ex", ml: 1, display: "flex", justifyContent: "center" }}>
+                <Box
+                  sx={{
+                    fontSize: "3ex",
+                    ml: 1,
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
                   <Typography sx={{ fontSize: "3ex" }}>TIDESHARE</Typography>
-                  </Box>
-                  <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <WavesIcon />
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <WavesIcon />
                 </Box>
               </Stack>
             </Link>
@@ -65,8 +83,14 @@ export default function Navigation() {
               fontSize="inherit"
               sx={{ justifyContent: "center" }}
             >
-              <Typography sx={{ justifyContent: "flex-end", display: "flex", fontSize: "3ex"}}>
-                About Us
+              <Typography
+                sx={{
+                  justifyContent: "flex-end",
+                  display: "flex",
+                  fontSize: "3ex",
+                }}
+              >
+                ABOUT US
               </Typography>
             </Link>
           </Container>
@@ -75,47 +99,65 @@ export default function Navigation() {
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 {!!isSignedIn && (
                   <>
-                  <Typography sx={{ justifyContent:"flex-end", display: "flex", fontSize: "3ex" }}>
-                    {user.firstName}
-                  </Typography>
-                
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleMenu}
-                  color="inherit"
-                  sx={{
-                    alignContent: "flex-end",
-                  }}
-                >
-                  <AccountCircle />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorEl)}
-                  onClose={handleClose}
-                >
-                  <MenuItem onClick={handleClose} href="#">
-                    My Posts 
-                  </MenuItem>
-                  <MenuItem onClick={() => signOut()} href="#">
-                    Sign out
-                  </MenuItem>
-                </Menu>
-                </>
+                    <Typography
+                      sx={{
+                        justifyContent: "flex-end",
+                        display: "flex",
+                        fontSize: "3ex",
+                      }}
+                    >
+                      {user.firstName}
+                    </Typography>
+
+                    <IconButton
+                      size="large"
+                      aria-label="account of current user"
+                      aria-controls="menu-appbar"
+                      aria-haspopup="true"
+                      onClick={handleMenu}
+                      color="inherit"
+                      sx={{
+                        alignContent: "flex-end",
+                      }}
+                    >
+                      <AccountCircle />
+                    </IconButton>
+                    <Menu
+                      id="menu-appbar"
+                      anchorEl={anchorEl}
+                      anchorOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                      keepMounted
+                      transformOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                      open={Boolean(anchorEl)}
+                      onClose={handleClose}
+                    >
+                      <MenuItem onClick={handleClose} href="#">
+                        My Posts
+                      </MenuItem>
+                      <MenuItem onClick={() => signOut()} href="#">
+                        Sign out
+                      </MenuItem>
+                    </Menu>
+                  </>
                 )}
+             {!isSignedIn && (
+                <SignInButton>
+                  <Button color="inherit" variant="outlined" sx={{
+                    ":hover": {
+                      "backgroundColor": "#FFE5B4",
+                      "color": "#000000"
+                    }
+                  }}>
+                    <Typography sx={{ fontSize: "2.5ex" }}>Sign in</Typography>
+                  </Button>
+                </SignInButton>
+              )}
               </Box>
             </Link>
           </Box>
