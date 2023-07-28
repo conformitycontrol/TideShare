@@ -20,13 +20,13 @@ const themeDark = createTheme({
   },
   palette: {
     primary: {
-      main: "#042440"
+      main: "#042440",
     },
     secondary: {
       main: "#ffffff"
     },
     background: {
-      default: "#042440",
+      default: "#",
     },
     text: {
       primary: "#000000",
