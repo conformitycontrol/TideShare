@@ -79,7 +79,7 @@ export default function Navigation() {
             <Link
               underline="none"
               color="inherit"
-              href="./AboutUs"
+              href="/"
               fontSize="inherit"
               sx={{ justifyContent: "center" }}
             >
