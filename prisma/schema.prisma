@@ -16,10 +16,12 @@ model Post {
   updatedAt   DateTime @updatedAt
   published   Boolean  @default(false)
   model       String   @db.VarChar(255)
+  type       String   @db.VarChar(255)
   price       Int
   size        String
   description String   
   condition   Condition
+  fins        Int 
 }
 
 enum Condition {
@@ -27,3 +29,19 @@ enum Condition {
   GOOD
   FAIR
 }
+
+enum Type {
+  SHORTBOARD
+  LONGBOARD
+  FISH
+  FUNBOARD
+  MINIMAL
+  EGG
+  GUN
+  PERFORMANCESHORTBOARD
+  STEPUP
+  BONZER
+  MINISIMMONS
+  ALAIA
+}
+
