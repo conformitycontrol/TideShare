@@ -137,7 +137,7 @@ export default function Navigation() {
                       open={Boolean(anchorEl)}
                       onClose={handleClose}
                     >
-                      <MenuItem onClick={handleClose} href="#">
+                      <MenuItem onClick={handleClose} href="./MyPosts">
                         My Posts
                       </MenuItem>
                       <MenuItem onClick={() => signOut()} href="#">
@@ -146,18 +146,24 @@ export default function Navigation() {
                     </Menu>
                   </>
                 )}
-             {!isSignedIn && (
-                <SignInButton>
-                  <Button color="inherit" variant="outlined" sx={{
-                    ":hover": {
-                      "backgroundColor": "#FFE5B4",
-                      "color": "#000000"
-                    }
-                  }}>
-                    <Typography sx={{ fontSize: "2.5ex" }}>Sign in</Typography>
-                  </Button>
-                </SignInButton>
-              )}
+                {!isSignedIn && (
+                  <SignInButton>
+                    <Button
+                      color="inherit"
+                      variant="outlined"
+                      sx={{
+                        ":hover": {
+                          backgroundColor: "#FFE5B4",
+                          color: "#000000",
+                        },
+                      }}
+                    >
+                      <Typography sx={{ fontSize: "2.5ex" }}>
+                        Sign in
+                      </Typography>
+                    </Button>
+                  </SignInButton>
+                )}
               </Box>
             </Link>
           </Box>

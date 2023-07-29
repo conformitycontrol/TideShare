@@ -32,8 +32,8 @@ export default function AboutUs() {
               <Button variant="contained" sx={{ mt: 2 }}>
                 Contact us
               </Button>
-              <Button variant="contained" sx={{ mt: 2, ml: 2 }}>
-                Post a board 
+              <Button variant="contained" href="./AllPosts" sx={{ mt: 2, ml: 2 }}>
+                Boards
               </Button>
             </Link>
           </Box>
