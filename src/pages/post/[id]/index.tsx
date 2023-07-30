@@ -20,16 +20,33 @@ const SinglePostView = ({
 
   if (isLoading) {
     return (
+      <>
+      <Navigation />
       <Box sx={{ mb: 15 }}>
-        <Typography variant="h4">Loading...</Typography>
+        <Typography
+          variant="h4"
+          sx={{ mt: 20, display: "flex", justifyContent: "center" }}
+        >
+          Loading...
+        </Typography>
       </Box>
+      </>
     );
   }
+
   if (isError) {
     return (
+      <>
+      <Navigation />
       <Box sx={{ mb: 15 }}>
-        <Typography variant="h4">An error occured.</Typography>
+        <Typography
+          variant="h4"
+          sx={{ mt: 20, display: "flex", justifyContent: "center" }}
+          >
+          An error occured. Please retry.
+        </Typography>
       </Box>
+          </>
     );
   }
 
