@@ -2,7 +2,7 @@ import { Box, Container, Link, Paper, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { api } from "~/utils/api";
 import { useEffect } from "react";
-import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
+import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 
 export default function PostCard() {
   const { query } = useRouter();
@@ -96,9 +96,11 @@ export default function PostCard() {
                     <Box>
                       <Typography variant="h4">{post.type}</Typography>
                     </Box>
-                    <InsertPhotoIcon fontSize="large"/>
+                    <InsertPhotoIcon fontSize="large" />
                     <Box>
-                      <Typography variant="h5">${post.price} per hour</Typography>
+                      <Typography variant="h5">
+                        ${post.price} per hour
+                      </Typography>
                     </Box>
                     <Box>
                       <Typography variant="h5">Size: {post.size}</Typography>

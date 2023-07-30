@@ -63,19 +63,26 @@ const SinglePostView = ({
             </Box>
             <InsertPhotoIcon fontSize="large" />
           </Stack>
-          <Stack direction={"column"} spacing={1} display={"flex"} sx={{ justifyContent: "flex-start", display: "flex", p: 3}}>
+          <Stack
+            direction={"column"}
+            spacing={1}
+            display={"flex"}
+            sx={{ justifyContent: "flex-start", display: "flex", p: 3 }}
+          >
             <Box>
               <Typography variant="h5">${post?.price} per hour</Typography>
             </Box>
             <Box>
               <Typography variant="h5">Size: {post?.size}</Typography>
-          </Box>
+            </Box>
             <Box>
               <Typography variant="h5">Fin #: {post?.fins}</Typography>
-          </Box>
+            </Box>
             <Box>
-              <Typography variant="h5">Description: {post?.description}</Typography>
-          </Box>
+              <Typography variant="h5">
+                Description: {post?.description}
+              </Typography>
+            </Box>
           </Stack>
         </Paper>
       </Container>

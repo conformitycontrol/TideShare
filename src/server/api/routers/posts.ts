@@ -7,7 +7,7 @@ export const PostsByFieldRouter = createTRPCRouter({
     .input(
       z.object({
         name: z.string(),
-      })
+      }),
     )
     .query(async ({ input: { name }, ctx }) => {
       const post = await ctx.prisma.post.findMany({
@@ -25,15 +25,15 @@ export const PostsByFieldRouter = createTRPCRouter({
   getPostById: publicProcedure
     .input(
       z.object({
-        id: z.number()
-      })
+        id: z.number(),
+      }),
     )
     .query(async ({ input: { id }, ctx }) => {
       const post = await ctx.prisma.post.findUnique({
         where: {
-          id: id
-        }
-      })
+          id: id,
+        },
+      });
       return post;
-    })
+    }),
 });

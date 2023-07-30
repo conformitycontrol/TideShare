@@ -1,10 +1,4 @@
-import {
-  SignIn,
-  SignInButton,
-  SignOutButton,
-  useClerk,
-  useUser,
-} from "@clerk/nextjs";
+import { SignInButton, useClerk, useUser } from "@clerk/nextjs";
 import Head from "next/head";
 import {
   AppBar,
@@ -12,7 +6,6 @@ import {
   Container,
   Box,
   Button,
-  Icon,
   Stack,
   MenuItem,
   Menu,

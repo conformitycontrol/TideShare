@@ -11,15 +11,15 @@ const userPosts = (options?: { id: number }) => {
   const id = options?.id ?? parseInt(router.query.id as string);
   const query = api.PostsByField.getPostById.useQuery(
     { id: id },
-      
+
     {
-        staleTime: Infinity,
-    }
-  )
+      staleTime: Infinity,
+    },
+  );
   return {
     id,
     ...query,
-  }
+  };
 };
 
 export default userPosts;
