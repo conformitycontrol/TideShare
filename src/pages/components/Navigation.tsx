@@ -1,4 +1,4 @@
-import { SignInButton, useClerk, useUser } from "@clerk/nextjs";
+import { SignIn, SignInButton, useClerk, useUser } from "@clerk/nextjs";
 import Head from "next/head";
 import {
   AppBar,
@@ -16,6 +16,8 @@ import Link from "@mui/material/Link";
 import WavesIcon from "@mui/icons-material/Waves";
 import React from "react";
 import { AccountCircle } from "@mui/icons-material";
+import { MouseEvent } from "react";
+
 
 export default function Navigation() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -28,7 +30,14 @@ export default function Navigation() {
     setAnchorEl(null);
   };
 
-  const { signOut } = useClerk();
+  const clerk = useClerk();
+
+  const handleNotSignedIn = (event: MouseEvent<HTMLElement>) => {
+    if (!isSignedIn) {
+      event.preventDefault();
+      clerk.openSignIn();
+    }
+  }
 
   const { isSignedIn, user } = useUser();
 
@@ -42,50 +51,85 @@ export default function Navigation() {
       <AppBar position="fixed" sx={{ mb: 10 }}>
         <Toolbar>
           <Box>
-            <Link href="/" color="inherit" underline="none">
-              <Stack direction="row-reverse">
-                <Box
-                  sx={{
-                    fontSize: "3ex",
-                    ml: 1,
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Typography sx={{ fontSize: "3ex" }}>TIDESHARE</Typography>
-                </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <WavesIcon />
-                </Box>
-              </Stack>
-            </Link>
-          </Box>
-          <Container
-            sx={{ ml: 3, justifyContent: "center", alignItems: "center" }}
-          >
-            <Link
-              underline="none"
-              color="inherit"
-              href="/"
-              fontSize="inherit"
-              sx={{ justifyContent: "center" }}
-            >
-              <Typography
+            <Stack direction="row-reverse">
+              <Box
                 sx={{
-                  justifyContent: "flex-end",
-                  display: "flex",
                   fontSize: "3ex",
+                  ml: 1,
+                  display: "flex",
+                  justifyContent: "center",
                 }}
               >
-                ABOUT US
-              </Typography>
-            </Link>
+                <Typography sx={{ fontSize: "3ex" }}>
+                  <Link underline="none" href="/" sx={{ color: "#FFFFFF" }}>
+                    TIDESHARE
+                  </Link>
+                </Typography>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <WavesIcon />
+              </Box>
+            </Stack>
+          </Box>
+          <Container
+            maxWidth="sm"
+            sx={{
+              mr: 1,
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
+          >
+            <Stack direction={"row"}>
+              <Box>
+                <Link
+                  onClick={handleNotSignedIn}
+                  underline="none"
+                  color="inherit"
+                  href="../CreatePost"
+                  fontSize="inherit"
+                  sx={{ justifyContent: "center" }}
+                >
+                  <Typography
+                    sx={{
+                      justifyContent: "flex-end",
+                      display: "flex",
+                      fontSize: "3ex",
+                    }}
+                  >
+                    Post
+                  </Typography>
+                </Link>{" "}
+              </Box>
+              <Box
+                sx={{
+                  ml: 3,
+                }}
+              >
+                <Link
+                  underline="none"
+                  color="inherit"
+                  href="#"
+                  fontSize="inherit"
+                  sx={{ justifyContent: "center" }}
+                >
+                  <Typography
+                    sx={{
+                      justifyContent: "flex-end",
+                      display: "flex",
+                      fontSize: "3ex",
+                    }}
+                  >
+                    About Us
+                  </Typography>
+                </Link>
+              </Box>
+            </Stack>
           </Container>
           <Box>
             <Link underline="none" href="#" color="inherit">
@@ -133,7 +177,7 @@ export default function Navigation() {
                       <MenuItem onClick={handleClose} href="./MyPosts">
                         My Posts
                       </MenuItem>
-                      <MenuItem onClick={() => signOut()} href="#">
+                      <MenuItem onClick={() => clerk.signOut()} href="#">
                         Sign out
                       </MenuItem>
                     </Menu>
