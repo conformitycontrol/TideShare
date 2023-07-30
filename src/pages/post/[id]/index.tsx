@@ -6,6 +6,8 @@ import {
   Box,
   Stack,
   Typography,
+  Link,
+  Button,
 } from "@mui/material";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import usePosts from "~/hooks/usePosts";
@@ -102,6 +104,13 @@ const SinglePostView = ({
             </Box>
           </Stack>
         </Paper>
+        <Box sx={{display: "flex", justifyContent: "flex-start", mt: 3}}>
+          <Button variant="contained">
+            <Link href="../AllPosts" sx={{ color: "#ffffff" }}>
+             Back 
+            </Link>
+          </Button>
+        </Box>
       </Container>
     </>
   );
