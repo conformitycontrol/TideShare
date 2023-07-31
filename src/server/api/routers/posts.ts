@@ -1,4 +1,3 @@
-import { TurnedIn } from "@mui/icons-material";
 import { createTRPCRouter, publicProcedure } from "../trpc";
 import { z } from "zod";
 
@@ -35,5 +34,6 @@ export const PostsByFieldRouter = createTRPCRouter({
         },
       });
       return post;
-    }),
+    })
 });
+
