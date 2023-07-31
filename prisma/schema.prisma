@@ -18,12 +18,13 @@ model Post {
   published   Boolean   @default(false)
   model       String    @db.VarChar(255)
   type        String    @db.VarChar(255)
-  price       Int
+  price       String
   size        String
   description String
-  condition   Condition
+  condition   String
   fins        Int
   user        User[]
+  contact     String
 }
 
 model User {
