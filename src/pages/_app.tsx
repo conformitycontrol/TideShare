@@ -3,6 +3,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import type { AppProps } from "next/app";
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
+import { CssBaseline } from "@mui/material";
 
 const themeDark = createTheme({
   breakpoints: {
@@ -19,13 +20,13 @@ const themeDark = createTheme({
   },
   palette: {
     primary: {
-      main: "#042440",
-    },
-    secondary: {
       main: "#ffffff",
     },
+    secondary: {
+      main: "#000000",
+    },
     background: {
-      default: "#",
+      default: "#35A29F",
     },
     text: {
       primary: "#000000",
@@ -35,11 +36,14 @@ const themeDark = createTheme({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
+    <>
     <ThemeProvider theme={themeDark}>
+      <CssBaseline />
       <ClerkProvider {...pageProps}>
         <Component {...pageProps} />
       </ClerkProvider>
     </ThemeProvider>
+    </>
   );
 }
 

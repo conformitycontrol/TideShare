@@ -1,4 +1,4 @@
-import { SignIn, SignInButton, useClerk, useUser } from "@clerk/nextjs";
+import { SignInButton, useClerk, useUser } from "@clerk/nextjs";
 import Head from "next/head";
 import {
   AppBar,
@@ -32,6 +32,15 @@ export default function Navigation() {
 
   const clerk = useClerk();
 
+  const handleSignOut = () => {
+    clerk.signOut().then(() => { console.log("User signed out. ") },
+    (error) => {
+      console.error("Error during sign-out: ", error);
+    }
+  )
+  }
+  
+
   const handleNotSignedIn = (event: MouseEvent<HTMLElement>) => {
     if (!isSignedIn) {
       event.preventDefault();
@@ -61,7 +70,7 @@ export default function Navigation() {
                 }}
               >
                 <Typography sx={{ fontSize: "3ex" }}>
-                  <Link underline="none" href="/" sx={{ color: "#FFFFFF" }}>
+                  <Link underline="none" href="/" sx={{ fontWeight: 800, color: "#000000" }}>
                     TIDESHARE
                   </Link>
                 </Typography>
@@ -80,7 +89,7 @@ export default function Navigation() {
           <Container
             maxWidth="sm"
             sx={{
-              mr: 1,
+              mr: 0,
               display: "flex",
               justifyContent: "flex-end",
             }}
@@ -91,7 +100,7 @@ export default function Navigation() {
                   onClick={handleNotSignedIn}
                   underline="none"
                   color="inherit"
-                  href="../CreatePost"
+                  href="../AllPosts"
                   fontSize="inherit"
                   sx={{ justifyContent: "center" }}
                 >
@@ -100,9 +109,10 @@ export default function Navigation() {
                       justifyContent: "flex-end",
                       display: "flex",
                       fontSize: "3ex",
+                      fontWeight: "800"
                     }}
                   >
-                    Post
+                    Boards
                   </Typography>
                 </Link>{" "}
               </Box>
@@ -123,6 +133,7 @@ export default function Navigation() {
                       justifyContent: "flex-end",
                       display: "flex",
                       fontSize: "3ex",
+                      fontWeight: "800"
                     }}
                   >
                     About Us
@@ -141,6 +152,7 @@ export default function Navigation() {
                         justifyContent: "flex-end",
                         display: "flex",
                         fontSize: "3ex",
+                        fontWeight: "800"
                       }}
                     >
                       {user.firstName}
@@ -177,7 +189,7 @@ export default function Navigation() {
                       <MenuItem onClick={handleClose} href="./MyPosts">
                         My Posts
                       </MenuItem>
-                      <MenuItem onClick={() => clerk.signOut()} href="#">
+                      <MenuItem onClick={handleSignOut} href="#">
                         Sign out
                       </MenuItem>
                     </Menu>

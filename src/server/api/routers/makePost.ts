@@ -1,7 +1,6 @@
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "../trpc";
-import { TRPCError } from "@trpc/server";
-import { initScriptLoader } from "next/script";
+
 
 export const MakePostRouter = createTRPCRouter({
   create: publicProcedure
@@ -14,7 +13,7 @@ export const MakePostRouter = createTRPCRouter({
         description: z.string().min(1),
         size: z.string().min(1),
         contact: z.string().min(1),
-        condition: z.any()
+        condition: z.string(),
       })
     )
     .mutation(async ({ ctx, input }) => {

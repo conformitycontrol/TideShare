@@ -1,9 +1,7 @@
 import { api } from "~/utils/api";
 import { useRouter } from "next/router";
-import { useQuery } from "@tanstack/react-query";
-import { IdentificationLink } from "@clerk/nextjs/dist/types/server";
 
-const userPosts = (options?: { id: number }) => {
+const UserPosts = (options?: { id: number }) => {
   const router = useRouter();
 
   console.log("Query: ", router.query);
@@ -22,4 +20,4 @@ const userPosts = (options?: { id: number }) => {
   };
 };
 
-export default userPosts;
+export default UserPosts;
