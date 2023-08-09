@@ -80,7 +80,7 @@ export default function PostCard() {
         >
           <Stack direction="column" sx={{ p: 5 }}>
             {post?.map((post) => (
-              <Link underline="none" onClick={(e) => ClickIntoPost(post.id, e)}>
+              <Link key={post.id} underline="none" onClick={(e) => ClickIntoPost(post.id, e)}>
                 <Paper
                   sx={{
                     mt: 5,

@@ -8,7 +8,6 @@ import {
   InputAdornment,
   MenuItem,
   Container,
-  Link,
 } from "@mui/material";
 import React, { useState } from "react";
 
@@ -36,11 +35,11 @@ type FormData = {
   model: string;
   type: string;
   fins: number;
-  price: any;
+  price: string;
   description: string;
   size: string;
   contact: string;
-  condition: any;
+  condition: string;
 };
 
 export default function Form() {
@@ -69,16 +68,16 @@ export default function Form() {
 
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     try {
-      await mutate({
-        model: input.model as string,
-        type: input.type as string,
-        fins: input.fins as number,
+      mutate({
+        model: input.model,
+        type: input.type,
+        fins: input.fins,
         price: input.price,
-        description: input.description as string,
+        description: input.description,
         size: input.size,
-        contact: input.contact as string,
+        contact: input.contact,
         condition: input.condition,
       });
 
