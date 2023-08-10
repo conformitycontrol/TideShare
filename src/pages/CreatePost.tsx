@@ -8,11 +8,14 @@ import {
   InputAdornment,
   MenuItem,
   Container,
+  Stack,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useMemo, useState, useCallback } from "react";
 import { StandardDropzone } from "./components/StandardDropzone";
 import { api } from "~/utils/api";
 import Navigation from "./components/Navigation";
+import { useDropzone } from "react-dropzone";
+import axios from "axios";
 
 const conditions = [
   {
@@ -43,6 +46,69 @@ type FormData = {
 };
 
 export default function Form() {
+  const [uploadedFileName, setUploadedFileName] = useState<string | null>(null);
+
+  const [presignedUrl, setPresignedUrl] = useState<string | null>(null);
+
+  const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
+
+  const { mutateAsync: fetchPresignedUrls } =
+    api.s3.getStandardUploadPresignedUrl.useMutation();
+
+  const [submitDisabled, setSubmitDisabled] = useState(true);
+
+  const apiUtils = api.useContext();
+
+  const { getRootProps, getInputProps, isDragActive, acceptedFiles } =
+    useDropzone({
+      maxFiles: 1,
+      maxSize: 5 * 2 ** 30, // roughly 5GB
+      multiple: false,
+      onDropAccepted: (files, _event) => {
+        const file = files[0] as File;
+
+        fetchPresignedUrls({
+          key: file.name,
+        })
+          .then((url) => {
+            setPresignedUrl(url);
+            setSubmitDisabled(false);
+            setUploadedFileName(file.name);
+          })
+          .catch((err) => console.error(err));
+      },
+    });
+
+  const files = useMemo(() => {
+    if (!submitDisabled)
+      return acceptedFiles.map((file) => (
+        <li key={file.name}>
+          {file.name} - {file.size} bytes
+        </li>
+      ));
+    return null;
+  }, [acceptedFiles, submitDisabled]);
+
+  const handleImageSubmit = useCallback(async () => {
+    if (acceptedFiles.length > 0 && presignedUrl !== null) {
+      const file = acceptedFiles[0] as File;
+      await axios
+        .put(presignedUrl, file.slice(), {
+          headers: { "Content-Type": file.type },
+        })
+        .then((response) => {
+          console.log(response);
+          console.log("Successfully uploaded ", file.name);
+          const imageUrl = `https://tide-bucket-1.s3.us-west-2.amazonaws.com/${file.name}`;
+          setUploadedImageUrl(imageUrl);
+          console.log(imageUrl)
+        })
+        .catch((err) => console.error(err));
+      setSubmitDisabled(true);
+      await apiUtils.s3.getObjects.invalidate();
+    }
+  }, [acceptedFiles, apiUtils.s3.getObjects, presignedUrl]);
+
   const { mutate } = api.createPost.create.useMutation();
 
   const [input, setInput] = useState<FormData>({
@@ -79,13 +145,14 @@ export default function Form() {
         size: input.size,
         contact: input.contact,
         condition: input.condition,
+        imagename: uploadedFileName,
       });
 
       // Form succesfully submitted
       setIsSubmitted(true);
 
       setTimeout(() => {
-        window.location.href = "./AllPosts"
+        window.location.href = "./AllPosts";
       }, 1000);
     } catch (error: any) {
       // handle error
@@ -93,7 +160,6 @@ export default function Form() {
     }
   };
 
-  
   return (
     <>
       <Navigation />
@@ -110,7 +176,50 @@ export default function Form() {
                 <Typography variant="h5" sx={{ mb: 3 }}>
                   Please enter the following details:
                 </Typography>
-                <StandardDropzone />
+                <Stack direction="column">
+                  <Box
+                    sx={{
+                      p: 3,
+                      backgroundColor: "#a9a9a9",
+                      width: "300px",
+                      height: "300px",
+                    }}
+                    {...getRootProps()}
+                  >
+                    <input {...getInputProps()} />
+                    {isDragActive ? (
+                      <Box sx={{ backgroundColor: "#a9a9a9" }}>
+                        Drop the file here
+                      </Box>
+                    ) : (
+                      <Box>
+                        {uploadedImageUrl && (
+                          <img
+                            src={uploadedImageUrl}
+                            alt="Uploaded Surfboard"
+                            style={{ maxWidth: "100%", marginTop: "20px" }}
+                          />
+                        )}
+                      </Box>
+                    )}
+                  </Box>
+                  <aside>
+                    <h4>Files pending upload</h4>
+                    <ul>{files}</ul>
+                  </aside>
+                  <Button
+                    variant="outlined"
+                    sx={{ mb: 3, width: "300px", color: "#000000" }}
+                    onClick={() => void handleImageSubmit()}
+                    disabled={
+                      presignedUrl === null ||
+                      acceptedFiles.length === 0 ||
+                      submitDisabled
+                    }
+                  >
+                    Upload
+                  </Button>
+                </Stack>
                 <TextField
                   id="outlined-standard-basic"
                   label="Model"

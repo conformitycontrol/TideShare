@@ -14,6 +14,7 @@ export const MakePostRouter = createTRPCRouter({
         size: z.string().min(1),
         contact: z.string().min(1),
         condition: z.string(),
+        imagename: z.any()
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -28,6 +29,7 @@ export const MakePostRouter = createTRPCRouter({
           size: input.size,
           contact: input.contact,
           condition: input.condition,
+          ImageName: input.imagename,
         },
       });
 
