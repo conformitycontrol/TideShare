@@ -11,7 +11,6 @@ import {
   Stack,
 } from "@mui/material";
 import React, { useMemo, useState, useCallback } from "react";
-import { StandardDropzone } from "./components/StandardDropzone";
 import { api } from "~/utils/api";
 import Navigation from "./components/Navigation";
 import { useDropzone } from "react-dropzone";
@@ -101,7 +100,7 @@ export default function Form() {
           console.log("Successfully uploaded ", file.name);
           const imageUrl = `https://tide-bucket-1.s3.us-west-2.amazonaws.com/${file.name}`;
           setUploadedImageUrl(imageUrl);
-          console.log(imageUrl)
+          console.log(imageUrl);
         })
         .catch((err) => console.error(err));
       setSubmitDisabled(true);
@@ -179,10 +178,13 @@ export default function Form() {
                 <Stack direction="column">
                   <Box
                     sx={{
-                      p: 3,
-                      backgroundColor: "#a9a9a9",
+                      display: "flex",
+                      backgroundColor: "#ededed",
                       width: "300px",
-                      height: "300px",
+                      height: "500px",
+                      borderRadius: "15px",
+                      border: 2,
+                      overflow: "hidden"
                     }}
                     {...getRootProps()}
                   >
@@ -192,14 +194,13 @@ export default function Form() {
                         Drop the file here
                       </Box>
                     ) : (
-                      <Box>
-                        {uploadedImageUrl && (
-                          <img
-                            src={uploadedImageUrl}
-                            alt="Uploaded Surfboard"
-                            style={{ maxWidth: "100%", marginTop: "20px" }}
-                          />
-                        )}
+                      <Box sx={{ display: "flex"}}>
+                        <img
+                          src={uploadedImageUrl}
+                          alt="Uploaded Surfboard"
+                          width={300}
+                          height={500}
+                        />
                       </Box>
                     )}
                   </Box>

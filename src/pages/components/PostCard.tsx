@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { api } from "~/utils/api";
 import { useEffect } from "react";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
+import Image from "next/image";
 
 export default function PostCard() {
   const { query } = useRouter();
@@ -22,6 +23,7 @@ export default function PostCard() {
     [post, isLoading, isError];
 
   const router = useRouter();
+
   const ClickIntoPost = (id: number, _event: React.MouseEvent) => {
     void router.push(`/post/${id}`);
   };
@@ -36,6 +38,7 @@ export default function PostCard() {
     price: post.price,
     size: post.size,
     user: post.user,
+    imagename: post.ImageName,
   }));
 
   console.log("Query: ", query.name);
@@ -69,7 +72,7 @@ export default function PostCard() {
 
   return (
     <>
-      <Container maxWidth="sm" sx={{ mt: 10 }}>
+      <Container maxWidth="md" sx={{ mt: 10 }}>
         <Paper
           elevation={8}
           sx={{
@@ -78,37 +81,61 @@ export default function PostCard() {
             backgroundColor: "#D3D3D3",
           }}
         >
-          <Stack direction="column" sx={{ p: 5 }}>
-            {post?.map((post) => (
-              <Link key={post.id} underline="none" onClick={(e) => ClickIntoPost(post.id, e)}>
-                <Paper
-                  sx={{
-                    mt: 5,
-                    p: 5,
-                    display: "flex",
-                    justifyContent: "flex-start",
-                  }}
+          <Stack direction="row">
+            <Stack direction="column" sx={{ p: 5 }}>
+              {post?.map((post) => (
+                <Link
+                  key={post.id}
+                  underline="none"
+                  onClick={(e) => ClickIntoPost(post.id, e)}
                 >
-                  <Stack spacing={3}>
-                    <Box>
-                      <Typography variant="h3">{post.model}</Typography>
+                  <Paper
+                    sx={{
+                      mt: 3,
+                      p: 5,
+                      display: "flex",
+                      justifyContent: "flex-start",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        display: "flex",
+                        border: 3,
+                        borderColor: "grey.500",
+                        mr: 3,
+                        borderRadius: "20px",
+                        overflow: "hidden",
+                        height: "400",
+                        width: "400",
+                      }}
+                    >
+                      <img
+                        src={`https://tide-bucket-1.s3.us-west-2.amazonaws.com/${post.ImageName}`}
+                        width={400}
+                        height={400}
+                        alt="post image"
+                      />
                     </Box>
-                    <Box>
-                      <Typography variant="h4">{post.type}</Typography>
-                    </Box>
-                    <InsertPhotoIcon fontSize="large" />
-                    <Box>
-                      <Typography variant="h5">
-                        ${post.price} per hour
-                      </Typography>
-                    </Box>
-                    <Box>
-                      <Typography variant="h5">Size: {post.size}</Typography>
-                    </Box>
-                  </Stack>
-                </Paper>
-              </Link>
-            ))}
+                    <Stack spacing={3}>
+                      <Box>
+                        <Typography variant="h3">{post.model}</Typography>
+                      </Box>
+                      <Box>
+                        <Typography variant="h4">{post.type}</Typography>
+                      </Box>
+                      <Box>
+                        <Typography variant="h5">
+                          ${post.price} per hour
+                        </Typography>
+                      </Box>
+                      <Box>
+                        <Typography variant="h5">Size: {post.size}</Typography>
+                      </Box>
+                    </Stack>
+                  </Paper>
+                </Link>
+              ))}
+            </Stack>
           </Stack>
         </Paper>
       </Container>
