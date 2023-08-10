@@ -10,7 +10,7 @@ import {
   Container,
 } from "@mui/material";
 import React, { useState } from "react";
-
+import { StandardDropzone } from "./components/StandardDropzone";
 import { api } from "~/utils/api";
 import Navigation from "./components/Navigation";
 
@@ -103,13 +103,14 @@ export default function Form() {
             container
             spacing={3}
             justifyContent="center"
-            sx={{ mt: 1, mb: 10 }}
+            sx={{ mt: 1, mb: 10, ml: 5, mr: 5 }}
           >
             <Paper sx={{ p: 3 }} elevation={4}>
               <form method="POST">
                 <Typography variant="h5" sx={{ mb: 3 }}>
                   Please enter the following details:
                 </Typography>
+                <StandardDropzone />
                 <TextField
                   id="outlined-standard-basic"
                   label="Model"
