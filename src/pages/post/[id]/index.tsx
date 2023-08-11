@@ -86,7 +86,7 @@ const SinglePostView = ({
             }}
           >
             <img
-              src={`https://tide-bucket-1.s3.us-west-2.amazonaws.com/${post?.ImageName}`}
+              src={`https://tide-bucket-1.s3.us-west-2.amazonaws.com/${post?.ImageName ?? ""}`}
               width={400}
               height={400}
               alt="post image"

@@ -143,7 +143,7 @@ export default function Form() {
         size: input.size,
         contact: input.contact,
         condition: input.condition,
-        imagename: uploadedFileName,
+        imagename: uploadedFileName ?? "",
         location: input.location,
       });
 
