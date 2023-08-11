@@ -16,20 +16,17 @@ import Navigation from "./components/Navigation";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
 
-const conditions = [
-  {
-    value: "1",
-    label: "Excellent",
-  },
-  {
-    value: "2",
-    label: "Good",
-  },
-  {
-    value: "3",
-    label: "Fair",
-  },
-];
+const locations: { [key: string]: string } = {
+  "1": "Eugene",
+  "2": "Portland",
+  "3": "Seattle",
+};
+
+const conditions: { [key: string]: string } = {
+  "1": "Excellent",
+  "2": "Good",
+  "3": "Used",
+};
 
 const finOptions = Array.from({ length: 6 }, (_, index) => index);
 
@@ -42,6 +39,7 @@ type FormData = {
   size: string;
   contact: string;
   condition: string;
+  location: string;
 };
 
 export default function Form() {
@@ -119,6 +117,7 @@ export default function Form() {
     size: "",
     contact: "",
     condition: "",
+    location: "",
   });
 
   const handleInputChange = (
@@ -145,6 +144,7 @@ export default function Form() {
         contact: input.contact,
         condition: input.condition,
         imagename: uploadedFileName,
+        location: input.location,
       });
 
       // Form succesfully submitted
@@ -173,7 +173,7 @@ export default function Form() {
           >
             <Paper
               sx={{
-                p: 1,
+                p: 5,
                 borderRadius: "10px",
                 display: "flex",
                 justifyContent: "flex-start",
@@ -300,9 +300,9 @@ export default function Form() {
                     mb: 3,
                   }}
                 >
-                  {conditions.map((option) => (
-                    <MenuItem key={option.label} value={option.label}>
-                      {option.label}
+                  {Object.keys(conditions).map((key) => (
+                    <MenuItem key={key} value={conditions[key]}>
+                      {conditions[key]}
                     </MenuItem>
                   ))}
                 </TextField>
@@ -361,6 +361,28 @@ export default function Form() {
                   multiline
                   rows={4}
                 />
+
+                <TextField
+                  id="outlined-standard-basic"
+                  select
+                  label="City"
+                  value={input.location}
+                  onChange={(e) => handleInputChange(e, "location")}
+                  variant="outlined"
+                  helperText="Select"
+                  color="secondary"
+                  fullWidth
+                  required
+                  sx={{
+                    mb: 3,
+                  }}
+                >
+                  {Object.keys(locations).map((key) => (
+                    <MenuItem key={key} value={locations[key]}>
+                      {locations[key]}
+                    </MenuItem>
+                  ))}
+                </TextField>
                 <TextField
                   id="outlined-standard-basic"
                   label="Contact"
@@ -389,7 +411,7 @@ export default function Form() {
               variant="contained"
               onClick={handleSubmit}
             >
-              Submit
+              POST
             </Button>
           </Grid>
         </Box>

@@ -15,7 +15,6 @@ export default function AboutUs() {
       <Navigation />
       
       <Paper
-        variant={"outlined"}
         elevation={12}
         sx={{
           mt: 16,

@@ -124,7 +124,7 @@ export default function Navigation() {
                 <Link
                   underline="none"
                   color="inherit"
-                  href="#"
+                  href="../CreatePost"
                   fontSize="inherit"
                   sx={{ justifyContent: "center" }}
                 >
@@ -136,7 +136,7 @@ export default function Navigation() {
                       fontWeight: "800"
                     }}
                   >
-                    About Us
+                    Post
                   </Typography>
                 </Link>
               </Box>
@@ -186,9 +186,6 @@ export default function Navigation() {
                       open={Boolean(anchorEl)}
                       onClose={handleClose}
                     >
-                      <MenuItem onClick={handleClose} href="./MyPosts">
-                        My Posts
-                      </MenuItem>
                       <MenuItem onClick={handleSignOut} href="#">
                         Sign out
                       </MenuItem>
