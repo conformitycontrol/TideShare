@@ -13,12 +13,6 @@ RUN npm install
 # copy directory into image directory
 COPY . .
 
-# Run build
-RUN npm install
-
-# copy directory into image directory
-COPY . .
-
 # Build 
 RUN npm run build
 
