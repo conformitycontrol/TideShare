@@ -26,6 +26,7 @@ model Post {
   user        User[]
   contact     String
   ImageName   String
+  Location    String
 }
 
 model User {

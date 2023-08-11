@@ -1,11 +1,30 @@
-import { Box, Container, Link, Paper, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  Link,
+  MenuItem,
+  Paper,
+  Select,
+  SelectChangeEvent,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useRouter } from "next/router";
 import { api } from "~/utils/api";
 import { useEffect } from "react";
-import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
-import Image from "next/image";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import React from "react";
 
 export default function PostCard() {
+  const [location, setLocation] = React.useState("");
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setLocation(event.target.value);
+  };
+
   const { query } = useRouter();
   const {
     data: post,
@@ -39,6 +58,7 @@ export default function PostCard() {
     size: post.size,
     user: post.user,
     imagename: post.ImageName,
+    location: post.Location,
   }));
 
   console.log("Query: ", query.name);
@@ -70,9 +90,41 @@ export default function PostCard() {
     );
   }
 
+  const filteredPosts = location
+    ? posts?.filter((post) => post.location === location)
+    : posts;
+
+  console.log("Location", location);
+
   return (
     <>
       <Container maxWidth="md" sx={{ mt: 10 }}>
+        <Stack direction= "row" sx={{ alignItems: "center", display: "flex" }}>
+          <LocationOnIcon />
+          <FormControl
+            sx={{ m: 1, minWidth: 120, color: "inherit", fontWeight: "800" }}
+          >
+            <InputLabel id="demo-simple-select-helper-label">
+              Location
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-helper-label"
+              id="demo-simple-select-helper"
+              value={location}
+              label="Location"
+              onChange={handleChange}
+              sx={{ fontWeight: "800" }}
+            >
+              <MenuItem value="">
+                <em>Any</em>
+              </MenuItem>
+              <MenuItem value={"Eugene"}>Eugene</MenuItem>
+              <MenuItem value={"Portland"}>Portland</MenuItem>
+              <MenuItem value={"Seattle"}>Seattle</MenuItem>
+            </Select>
+          </FormControl>
+        </Stack>
+
         <Paper
           elevation={8}
           sx={{
@@ -80,65 +132,85 @@ export default function PostCard() {
             justifyContent: "center",
             backgroundColor: "#D3D3D3",
             borderRadius: "15px",
-            mb: 5
+            mb: 5,
+            mt: 3,
           }}
         >
           <Stack direction="row">
             <Stack direction="column" sx={{ p: 4 }}>
-              {post?.map((post) => (
-                <Link
-                  key={post.id}
-                  underline="none"
-                  onClick={(e) => ClickIntoPost(post.id, e)}
-                  sx={{ cursor: "pointer"}}
-                >
-                  <Paper
-                    sx={{
-                      mb: 8,
-                      p: 5,
-                      display: "flex",
-                      borderRadius: "15px",
-                      justifyContent: "flex-start",
-                    }}
+              {filteredPosts?.length === 0 ? (
+                <Typography variant="h6">
+                  No boards in this location, check back soon!
+                </Typography>
+              ) : (
+                filteredPosts?.map((post) => (
+                  <Link
+                    key={post.id}
+                    underline="none"
+                    onClick={(e) => ClickIntoPost(post.id, e)}
+                    sx={{ cursor: "pointer" }}
                   >
-                    <Box
+                    <Paper
                       sx={{
+                        mb: 8,
+                        p: 5,
                         display: "flex",
-                        border: 3,
-                        borderColor: "grey.500",
-                        mr: 3,
-                        borderRadius: "20px",
-                        overflow: "hidden",
-                        height: "400",
-                        width: "600",
+                        borderRadius: "15px",
+                        justifyContent: "flex-start",
                       }}
                     >
-                      <img
-                        src={`https://tide-bucket-1.s3.us-west-2.amazonaws.com/${post.ImageName}`}
-                        width={400}
-                        height={600}
-                        alt="post image"
-                      />
-                    </Box>
-                    <Stack spacing={3}>
-                      <Box>
-                        <Typography variant="h3">{post.model}</Typography>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          border: 3,
+                          borderColor: "grey.500",
+                          mr: 3,
+                          borderRadius: "20px",
+                          overflow: "hidden",
+                          height: "400",
+                          width: "600",
+                        }}
+                      >
+                        <img
+                          src={`https://tide-bucket-1.s3.us-west-2.amazonaws.com/${post.imagename}`}
+                          width={400}
+                          height={600}
+                          alt="post image"
+                        />
                       </Box>
-                      <Box>
-                        <Typography variant="h4">{post.type}</Typography>
-                      </Box>
-                      <Box>
-                        <Typography variant="h5">
-                          ${post.price} per hour
-                        </Typography>
-                      </Box>
-                      <Box>
-                        <Typography variant="h5">Size: {post.size}</Typography>
-                      </Box>
-                    </Stack>
-                  </Paper>
-                </Link>
-              ))}
+                      <Stack spacing={3}>
+                        <Box>
+                          <Stack
+                            direction="row"
+                            sx={{ alignItems: "center", display: "flex" }}
+                          >
+                            <LocationOnIcon />
+                            <Typography sx={{ ml: 0.5 }} variant="h5">
+                              {post.location}
+                            </Typography>
+                          </Stack>
+                        </Box>
+                        <Box>
+                          <Typography variant="h3">{post.model}</Typography>
+                        </Box>
+                        <Box>
+                          <Typography variant="h4">{post.type}</Typography>
+                        </Box>
+                        <Box>
+                          <Typography variant="h5">
+                            ${post.price} per hour
+                          </Typography>
+                        </Box>
+                        <Box>
+                          <Typography variant="h5">
+                            Size: {post.size}
+                          </Typography>
+                        </Box>
+                      </Stack>
+                    </Paper>
+                  </Link>
+                ))
+              )}
             </Stack>
           </Stack>
         </Paper>
