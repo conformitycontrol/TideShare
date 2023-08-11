@@ -3,6 +3,7 @@ import { PostsByFieldRouter } from "./routers/posts";
 import { AllPostsRouter } from "./routers/allPosts";
 import { profileRouter } from "./routers/profile";
 import { MakePostRouter } from "./routers/makePost";
+import { s3Router } from "./routers/s3";
 /**
  * This is the primary router for your server.
  *
@@ -13,6 +14,7 @@ export const appRouter = createTRPCRouter({
   PostsByField: PostsByFieldRouter,
   profileRouter: profileRouter,
   createPost: MakePostRouter,
+  s3: s3Router,
 });
 
 // export type definition of API

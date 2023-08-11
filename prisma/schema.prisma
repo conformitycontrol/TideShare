@@ -25,6 +25,7 @@ model Post {
   fins        Int
   user        User[]
   contact     String
+  ImageName   String
 }
 
 model User {

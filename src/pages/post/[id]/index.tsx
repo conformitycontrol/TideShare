@@ -23,15 +23,15 @@ const SinglePostView = ({
   if (isLoading) {
     return (
       <>
-      <Navigation />
-      <Box sx={{ mb: 15 }}>
-        <Typography
-          variant="h4"
-          sx={{ mt: 20, display: "flex", justifyContent: "center" }}
-        >
-          Loading...
-        </Typography>
-      </Box>
+        <Navigation />
+        <Box sx={{ mb: 15 }}>
+          <Typography
+            variant="h4"
+            sx={{ mt: 20, display: "flex", justifyContent: "center" }}
+          >
+            Loading...
+          </Typography>
+        </Box>
       </>
     );
   }
@@ -39,23 +39,23 @@ const SinglePostView = ({
   if (isError) {
     return (
       <>
-      <Navigation />
-      <Box sx={{ mb: 15 }}>
-        <Typography
-          variant="h4"
-          sx={{ mt: 20, display: "flex", justifyContent: "center" }}
+        <Navigation />
+        <Box sx={{ mb: 15 }}>
+          <Typography
+            variant="h4"
+            sx={{ mt: 20, display: "flex", justifyContent: "center" }}
           >
-          An error occured. Please retry.
-        </Typography>
-      </Box>
-          </>
+            An error occured. Please retry.
+          </Typography>
+        </Box>
+      </>
     );
   }
 
   return (
     <>
       <Navigation />
-      <Container maxWidth="md" sx={{ mt: 15 }}>
+      <Container maxWidth="lg" sx={{ mt: 15 }}>
         <Alert severity="warning">
           <AlertTitle>
             <Typography fontWeight={800}>Warning!</Typography>
@@ -73,6 +73,25 @@ const SinglePostView = ({
             backgroundColor: "#e0e0e0",
           }}
         >
+          <Box
+            sx={{
+              display: "flex",
+              border: 3,
+              borderColor: "grey.500",
+              mr: 3,
+              borderRadius: "20px",
+              overflow: "hidden",
+              height: "400",
+              width: "400",
+            }}
+          >
+            <img
+              src={`https://tide-bucket-1.s3.us-west-2.amazonaws.com/${post?.ImageName}`}
+              width={400}
+              height={400}
+              alt="post image"
+            />
+          </Box>
           <Stack spacing={5} sx={{ p: 2 }}>
             <Box>
               <Typography variant="h3">{post?.model}</Typography>
@@ -80,7 +99,6 @@ const SinglePostView = ({
             <Box>
               <Typography variant="h4">{post?.type}</Typography>
             </Box>
-            <InsertPhotoIcon fontSize="large" />
           </Stack>
           <Stack
             direction={"column"}
@@ -104,10 +122,10 @@ const SinglePostView = ({
             </Box>
           </Stack>
         </Paper>
-        <Box sx={{display: "flex", justifyContent: "flex-start", mt: 3}}>
+        <Box sx={{ display: "flex", justifyContent: "flex-start", mt: 3 }}>
           <Button variant="contained">
             <Link href="../AllPosts" sx={{ color: "#ffffff" }}>
-             Back 
+              Back
             </Link>
           </Button>
         </Box>
