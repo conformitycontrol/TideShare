@@ -163,14 +163,23 @@ export default function Form() {
     <>
       <Navigation />
       <Container maxWidth="lg" disableGutters sx={{ mt: 15 }}>
-        <Box sx={{ justifyContent: "center" }}>
+        <Box sx={{ justifyContent: "center", display: "flex" }}>
           <Grid
             container
             spacing={3}
             justifyContent="center"
-            sx={{ mt: 1, mb: 10, ml: 5, mr: 5 }}
+            display="flex"
+            sx={{ mt: 0, mb: 10, ml: 5, mr: 5 }}
           >
-            <Paper sx={{ p: 3 }} elevation={4}>
+            <Paper
+              sx={{
+                p: 1,
+                borderRadius: "10px",
+                display: "flex",
+                justifyContent: "flex-start",
+              }}
+              elevation={4}
+            >
               <form method="POST">
                 <Typography variant="h5" sx={{ mb: 3 }}>
                   Please enter the following details:
@@ -184,32 +193,44 @@ export default function Form() {
                       height: "500px",
                       borderRadius: "15px",
                       border: 2,
-                      overflow: "hidden"
+                      overflow: "hidden",
                     }}
                     {...getRootProps()}
                   >
                     <input {...getInputProps()} />
-                    {isDragActive ? (
-                      <Box sx={{ backgroundColor: "#a9a9a9" }}>
-                        Drop the file here
-                      </Box>
-                    ) : (
-                      <Box sx={{ display: "flex"}}>
+                    <Box sx={{ display: "flex" }}>
+                      {uploadedImageUrl ? (
                         <img
                           src={uploadedImageUrl}
                           alt="Uploaded Surfboard"
                           width={300}
                           height={500}
                         />
-                      </Box>
-                    )}
+                      ) : (
+                        <Box
+                          sx={{
+                            justifyContent: "center",
+                            display: "flex",
+                            alignItems: "center",
+                            textAlign: "center",
+                          }}
+                        >
+                          <Typography variant="h6">
+                            Drag or click to insert image.
+                          </Typography>
+                        </Box>
+                      )}
+                    </Box>
                   </Box>
                   <aside>
-                    <h4>Files pending upload</h4>
-                    <ul>{files}</ul>
+                    {!uploadedFileName ? (
+                      <h4>Files pending upload</h4>
+                    ) : (
+                      <ul>{files}</ul>
+                    )}
                   </aside>
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     sx={{ mb: 3, width: "300px", color: "#000000" }}
                     onClick={() => void handleImageSubmit()}
                     disabled={
@@ -222,13 +243,14 @@ export default function Form() {
                   </Button>
                 </Stack>
                 <TextField
-                  id="outlined-standard-basic"
+                  id="outlined-basic"
                   label="Model"
                   helperText="Surfboard Model/Name"
                   variant="outlined"
                   fullWidth
                   value={input.model}
                   onChange={(e) => handleInputChange(e, "model")}
+                  color="secondary"
                   required
                   sx={{
                     mb: 3,
@@ -242,6 +264,7 @@ export default function Form() {
                   onChange={(e) => handleInputChange(e, "type")}
                   variant="outlined"
                   fullWidth
+                  color="secondary"
                   required
                   sx={{
                     mb: 3,
@@ -256,6 +279,7 @@ export default function Form() {
                   onChange={(e) => handleInputChange(e, "size")}
                   fullWidth
                   helperText="Please use factory measurements"
+                  color="secondary"
                   required
                   sx={{
                     mb: 3,
@@ -269,6 +293,7 @@ export default function Form() {
                   onChange={(e) => handleInputChange(e, "condition")}
                   variant="outlined"
                   helperText="Select"
+                  color="secondary"
                   fullWidth
                   required
                   sx={{
@@ -289,6 +314,7 @@ export default function Form() {
                   onChange={(e) => handleInputChange(e, "fins")}
                   variant="outlined"
                   helperText="Select"
+                  color="secondary"
                   fullWidth
                   required
                   sx={{
@@ -304,6 +330,7 @@ export default function Form() {
                 <TextField
                   id="standard-basic"
                   label="Hourly Price"
+                  color="secondary"
                   variant="outlined"
                   value={input.price}
                   onChange={(e) => handleInputChange(e, "price")}
@@ -326,6 +353,7 @@ export default function Form() {
                   onChange={(e) => handleInputChange(e, "description")}
                   fullWidth
                   helperText="Prefered usage, rider size, etc."
+                  color="secondary"
                   required
                   sx={{
                     mb: 4,
@@ -341,16 +369,28 @@ export default function Form() {
                   onChange={(e) => handleInputChange(e, "contact")}
                   fullWidth
                   helperText="Phone number or Email"
+                  color="secondary"
                   required
                   sx={{
                     mb: 3,
                   }}
                 />
               </form>
-              <Button href="#" variant="contained" onClick={handleSubmit}>
-                Submit
-              </Button>
             </Paper>
+            <Button
+              sx={{
+                mt: 3,
+                display: "flex",
+                alignContent: "left",
+                fontSize: "15px",
+                fontWeight: "800",
+              }}
+              href="#"
+              variant="contained"
+              onClick={handleSubmit}
+            >
+              Submit
+            </Button>
           </Grid>
         </Box>
       </Container>

@@ -79,21 +79,25 @@ export default function PostCard() {
             display: "flex",
             justifyContent: "center",
             backgroundColor: "#D3D3D3",
+            borderRadius: "15px",
+            mb: 5
           }}
         >
           <Stack direction="row">
-            <Stack direction="column" sx={{ p: 5 }}>
+            <Stack direction="column" sx={{ p: 4 }}>
               {post?.map((post) => (
                 <Link
                   key={post.id}
                   underline="none"
                   onClick={(e) => ClickIntoPost(post.id, e)}
+                  sx={{ cursor: "pointer"}}
                 >
                   <Paper
                     sx={{
-                      mt: 3,
+                      mb: 8,
                       p: 5,
                       display: "flex",
+                      borderRadius: "15px",
                       justifyContent: "flex-start",
                     }}
                   >
@@ -106,13 +110,13 @@ export default function PostCard() {
                         borderRadius: "20px",
                         overflow: "hidden",
                         height: "400",
-                        width: "400",
+                        width: "600",
                       }}
                     >
                       <img
                         src={`https://tide-bucket-1.s3.us-west-2.amazonaws.com/${post.ImageName}`}
                         width={400}
-                        height={400}
+                        height={600}
                         alt="post image"
                       />
                     </Box>
