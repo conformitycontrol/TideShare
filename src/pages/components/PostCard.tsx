@@ -91,7 +91,7 @@ createdAt: Date;
   let filteredPosts: Post[] = [];
 
   if (!isLoading && !isError && post) {
-    const posts: Post[] = post.map((post) => ({
+    const posts: Post[] = post.map((post: any) => ({
       id: post.id,
       createdAt: post.createdAt,
       updatedAt: post.updatedAt,
@@ -104,7 +104,7 @@ createdAt: Date;
     }));
   
     filteredPosts = location
-    ? posts?.filter((post) => post.location === location)
+    ? posts?.filter((post: any) => post.location === location)
     : posts;
   }
 
