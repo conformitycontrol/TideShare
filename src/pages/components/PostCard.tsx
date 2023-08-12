@@ -47,26 +47,8 @@ export default function PostCard() {
     void router.push(`/post/${id}`);
   };
 
-  type ApiResponse = {
-    id: number;
-    createdAt: Date;
-    updatedAt: Date;
-    published: boolean;
-    model: string;
-    type: string;
-    price: string; // Check the actual type of the property
-    size: string;
-    description: string;
-    condition: string;
-    fins: number;
-    contact: string;
-    ImageName: string;
-    Location: string;
-    // ... other properties
-  };
 
-
-  const posts = post?.map((post: ApiResponse) => ({
+  const posts = post?.map((post) => ({
     id: post.id,
     createdAt: post.createdAt,
     updatedAt: post.createdAt,
