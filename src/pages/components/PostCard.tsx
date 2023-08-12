@@ -25,6 +25,18 @@ export default function PostCard() {
     setLocation(event.target.value);
   };
 
+  type Post = {
+  id: number;
+createdAt: Date;
+  updatedAt: Date;
+  model: string;
+  type: string;
+  price: string;
+  size: string;
+  imagename: string;
+  location: string;
+  };
+  
   const { query } = useRouter();
   const {
     data: post,
@@ -46,20 +58,6 @@ export default function PostCard() {
   const ClickIntoPost = (id: number, _event: React.MouseEvent) => {
     void router.push(`/post/${id}`);
   };
-
-
-  const posts = post?.map((post) => ({
-    id: post.id,
-    createdAt: post.createdAt,
-    updatedAt: post.createdAt,
-    published: post.published,
-    model: post.model,
-    type: post.type,
-    price: post.price,
-    size: post.size,
-    imagename: post.ImageName,
-    location: post.Location,
-  }));
 
   console.log("Query: ", query.name);
   /* const { data: data, isLoading, isError } = userPosts({ name: query. }) */
@@ -90,9 +88,25 @@ export default function PostCard() {
     );
   }
 
-  const filteredPosts = location
+  let filteredPosts: Post[] = [];
+
+  if (!isLoading && !isError && post) {
+    const posts: Post[] = post.map((post) => ({
+      id: post.id,
+      createdAt: post.createdAt,
+      updatedAt: post.updatedAt,
+      model: post.model,
+      type: post.type,
+      price: post.price,
+      size: post.size,
+      imagename: post.ImageName,
+      location: post.Location,
+    }));
+  
+    filteredPosts = location
     ? posts?.filter((post) => post.location === location)
     : posts;
+  }
 
   console.log("Location", location);
 
