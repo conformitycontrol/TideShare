@@ -128,7 +128,7 @@ const SinglePostView = ({
           </Stack>
         </Paper>
         <Box sx={{ display: "flex", justifyContent: "flex-start", mt: 3 }}>
-          <Button variant="contained">
+          <Button variant="outlined">
             <Link href="../AllPosts" sx={{ color: "#ffffff" }}>
               Back
             </Link>
