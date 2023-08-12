@@ -6,7 +6,7 @@ WORKDIR /app
 
 # make sure to include dependancies
 COPY package*.json ./
-COPY .env .env
+COPY .env.example .env
 # install all the included dependancies
 RUN npm install
 
