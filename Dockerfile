@@ -6,12 +6,14 @@ WORKDIR /app
 
 # make sure to include dependancies
 COPY package*.json ./
-COPY .env.example .env
-# install all the included dependancies
-RUN npm install
-
+COPY .env ./
+COPY prisma ./prisma/
+COPY package*.json ./
+COPY tsconfig.json ./
 # copy directory into image directory
 COPY . .
+# install all the included dependancies
+RUN npm install
 
 # Build 
 RUN npm run build
