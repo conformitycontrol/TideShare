@@ -6,7 +6,7 @@ WORKDIR /app
 
 # make sure to include dependancies
 COPY package*.json ./
-COPY .env ./
+COPY .env.example .env
 COPY prisma ./prisma/
 COPY package*.json ./
 COPY tsconfig.json ./
