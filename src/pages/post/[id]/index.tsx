@@ -1,6 +1,4 @@
 import {
-  Alert,
-  AlertTitle,
   Paper,
   Container,
   Box,
@@ -13,7 +11,7 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import usePosts from "~/hooks/usePosts";
 import Navigation from "~/pages/components/Navigation";
 import { prisma } from "~/server/db";
-import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 const SinglePostView = ({
   found,
@@ -56,21 +54,14 @@ const SinglePostView = ({
     <>
       <Navigation />
       <Container maxWidth="lg" sx={{ mt: 15 }}>
-        <Alert severity="warning">
-          <AlertTitle>
-            <Typography fontWeight={800}>Warning!</Typography>
-          </AlertTitle>
-          <Typography fontWeight={800}>
-            This site for viewing specific posts, and is under maintanance.
-          </Typography>
-        </Alert>
         <Paper
           sx={{
             mt: 5,
             p: 5,
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "justify-left",
             backgroundColor: "#e0e0e0",
+            borderRadius: "20px",
           }}
         >
           <Box
@@ -82,44 +73,58 @@ const SinglePostView = ({
               borderRadius: "20px",
               overflow: "hidden",
               height: "400",
-              width: "400",
+              width: "600",
             }}
           >
             <img
-              src={`https://tide-bucket-1.s3.us-west-2.amazonaws.com/${post?.ImageName ?? ""}`}
+              src={`https://tide-bucket-1.s3.us-west-2.amazonaws.com/${
+                post?.ImageName ?? ""
+              }`}
               width={400}
-              height={400}
+              height={600}
               alt="post image"
             />
           </Box>
-          <Stack spacing={5} sx={{ p: 2 }}>
-            <Box>
-              <Typography variant="h3">{post?.model}</Typography>
-            </Box>
-            <Box>
-              <Typography variant="h4">{post?.type}</Typography>
-            </Box>
-          </Stack>
-          <Stack
-            direction={"column"}
-            spacing={1}
-            display={"flex"}
-            sx={{ justifyContent: "flex-start", display: "flex", p: 3 }}
-          >
-            <Box>
-              <Typography variant="h5">${post?.price} per hour</Typography>
-            </Box>
-            <Box>
-              <Typography variant="h5">Size: {post?.size}</Typography>
-            </Box>
-            <Box>
-              <Typography variant="h5">Fin #: {post?.fins}</Typography>
-            </Box>
-            <Box>
-              <Typography variant="h5">
-                Description: {post?.description}
-              </Typography>
-            </Box>
+          <Stack direction="column">
+            <Stack spacing={5} sx={{ p: 2 }}>
+              <Box>
+                <Typography variant="h3">{post?.model}</Typography>
+              </Box>
+              <Box>
+                <Typography variant="h4">{post?.type}</Typography>
+              </Box>
+            </Stack>
+            <Stack
+              direction={"column"}
+              spacing={1}
+              display={"flex"}
+              sx={{ justifyContent: "flex-start", display: "flex", p: 3 }}
+            >
+              <Box sx={{ alignItems: "center", display: "flex" }}>
+                <LocationOnIcon sx={{ mr: 1 }} />
+                <Typography variant="h5">{post?.Location}</Typography>
+              </Box>
+              <Box>
+                <Typography variant="h5">${post?.price} per hour</Typography>
+              </Box>
+              <Box>
+                <Typography variant="h5">Size: {post?.size}</Typography>
+              </Box>
+              <Box>
+                <Typography variant="h5">Fin #: {post?.fins}</Typography>
+              </Box>
+              <Box>
+                <Typography variant="h5">Condition: {post?.condition}</Typography>
+              </Box>
+              <Box>
+                <Typography variant="h5">Contact: {post?.contact}</Typography>
+              </Box>
+              <Box>
+                <Typography variant="h5" sx={{ mt: 3 }}>
+                  Description: {post?.description}
+                </Typography>
+              </Box>
+            </Stack>
           </Stack>
         </Paper>
         <Box sx={{ display: "flex", justifyContent: "flex-start", mt: 3 }}>

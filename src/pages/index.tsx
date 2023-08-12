@@ -42,7 +42,7 @@ export default function AboutUs() {
             </Typography>
             <Button
               component="div"
-              variant="outlined"
+              variant="contained"
               href="#"
               sx={{ mt: 2, borderColor: "#000000" }}
             >
