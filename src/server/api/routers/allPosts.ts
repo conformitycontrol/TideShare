@@ -1,3 +1,6 @@
+
+/* eslint-disable */
+
 import { createTRPCRouter, publicProcedure } from "../trpc";
 import { any, z } from "zod";
 
