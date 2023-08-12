@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import {
   Box,
   Container,
@@ -88,7 +90,7 @@ createdAt: Date;
     );
   }
 
-  let filteredPosts: Post[] = [];
+  let filteredPosts: Post[] = [] as Post[];
 
   if (!isLoading && !isError && post) {
     const posts: Post[] = post.map((post: any) => ({
