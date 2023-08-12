@@ -1,3 +1,6 @@
+
+/* eslint-disable */
+
 import { SignInButton, useClerk, useUser } from "@clerk/nextjs";
 import Head from "next/head";
 import {

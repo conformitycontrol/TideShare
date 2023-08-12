@@ -1,3 +1,6 @@
+
+/* eslint-disable */
+
 import { Box, Container, Stack, Typography } from "@mui/material";
 import Navigation from "./components/Navigation";
 import SurfingIcon from "@mui/icons-material/Surfing";

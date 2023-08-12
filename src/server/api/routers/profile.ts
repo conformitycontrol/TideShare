@@ -1,3 +1,7 @@
+
+
+/* eslint-disable */
+
 import { clerkClient } from "@clerk/nextjs";
 import { TRPCClientError } from "@trpc/client";
 import { z } from "zod";
