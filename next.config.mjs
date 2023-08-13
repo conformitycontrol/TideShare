@@ -19,7 +19,7 @@ const config = {
     defaultLocale: "en",
 
   },
- output: "standalone",
+ output: "export",
 
 };
 

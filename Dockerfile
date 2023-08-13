@@ -1,6 +1,6 @@
 ##### DEPENDENCIES
 
-FROM --platform=linux/amd64 node:16-alpine3.17 AS deps
+FROM --platform=linux/amd64 node:18-alpine3.17 AS deps
 RUN apk add --no-cache libc6-compat openssl1.1-compat
 WORKDIR /app
 
@@ -21,7 +21,7 @@ RUN \
 
 ##### BUILDER
 
-FROM --platform=linux/amd64 node:16-alpine3.17 AS builder
+FROM --platform=linux/amd64 node:18-alpine3.17 AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
