@@ -75,11 +75,11 @@ export default function AboutUs() {
         <Box
           sx={{
             mt: 16,
-            ml: 25,
+            ml: 16,
             display: "flex",
             border: 3,
             borderColor: "#000000",
-            mr: 3,
+            mr: 16,
             borderRadius: "20px",
             overflow: "hidden",
             height: "600",
@@ -94,7 +94,7 @@ export default function AboutUs() {
         </Box>
       </Stack>
 
-      <Box sx={{ justifyContent: "center", display: "flex" }}>
+      <Box sx={{ justifyContent: "center", display: "flex"}}>
         <Stack direction="column">
           <Paper
             elevation={12}
@@ -116,8 +116,9 @@ export default function AboutUs() {
                 variant="h3"
                 sx={{
                   display: "flex",
+                  ml: 8,
                   justifyContent: "center",
-                  textAlign: "center",
+                  textAlign: "left"
                 }}
               >
                 Unleash your inner surfer.
@@ -127,7 +128,7 @@ export default function AboutUs() {
             <Box
               sx={{
                
-                ml: 25,
+                ml: 12,
                 
                 display: "flex",
                 border: 3,
