@@ -28,17 +28,17 @@ export default function PostCard() {
   };
 
   type Post = {
-  id: number;
-createdAt: Date;
-  updatedAt: Date;
-  model: string;
-  type: string;
-  price: string;
-  size: string;
-  imagename: string;
-  location: string;
+    id: number;
+    createdAt: Date;
+    updatedAt: Date;
+    model: string;
+    type: string;
+    price: string;
+    size: string;
+    imagename: string;
+    location: string;
   };
-  
+
   const { query } = useRouter();
   const {
     data: post,
@@ -104,19 +104,27 @@ createdAt: Date;
       imagename: post.ImageName,
       location: post.Location,
     }));
-  
+
     filteredPosts = location
-    ? posts?.filter((post: any) => post.location === location)
-    : posts;
+      ? posts?.filter((post: any) => post.location === location)
+      : posts;
   }
 
   console.log("Location", location);
 
   return (
     <>
-      <Container maxWidth="md" sx={{ mt: 10 }}>
-        <Stack direction= "row" sx={{ alignItems: "center", display: "flex" }}>
-          <LocationOnIcon />
+      <Stack
+        direction="row"
+        
+        sx={{
+          alignItems: "center",
+          display: "flex",
+          justifyContent: "center",
+          mt: 5
+        }}
+      >
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
           <FormControl
             sx={{ m: 1, minWidth: 120, color: "inherit", fontWeight: "800" }}
           >
@@ -139,8 +147,18 @@ createdAt: Date;
               <MenuItem value={"Seattle"}>Seattle</MenuItem>
             </Select>
           </FormControl>
-        </Stack>
-
+          <LocationOnIcon />
+        </Box>
+      </Stack>
+      <Container
+        maxWidth="lg"
+        sx={{
+          mt: 6,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Paper
           elevation={8}
           sx={{

@@ -72,7 +72,7 @@ export default function Navigation() {
                   justifyContent: "center",
                 }}
               >
-                <Typography sx={{ fontSize: "3ex" }}>
+                <Typography sx={{ fontSize: "3ex", fontFamily: "inherit" }}>
                   <Link underline="none" href="/" sx={{ fontWeight: 800, color: "#000000" }}>
                     TIDESHARE
                   </Link>
