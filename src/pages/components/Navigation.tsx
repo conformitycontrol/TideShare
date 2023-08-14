@@ -125,6 +125,7 @@ export default function Navigation() {
                 }}
               >
                 <Link
+                  onClick={handleNotSignedIn}
                   underline="none"
                   color="inherit"
                   href="../CreatePost"

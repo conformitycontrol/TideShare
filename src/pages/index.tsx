@@ -8,8 +8,22 @@ import {
   Paper,
   Container,
 } from "@mui/material";
+import React from 'react';
+import { SignInButton, useClerk, useUser } from "@clerk/nextjs";
+import { MouseEvent } from "react";
 
 export default function AboutUs() {
+
+
+  const clerk = useClerk();
+  const { isSignedIn, user } = useUser();
+  
+  const handleNotSignedIn = (event: MouseEvent<HTMLElement>) => {
+    if (!isSignedIn) {
+      event.preventDefault();
+      clerk.openSignIn();
+    }
+  }
   return (
     <>
       <Navigation />
@@ -49,6 +63,7 @@ export default function AboutUs() {
                 <Link
                   href="./AllPosts"
                   sx={{ color: "#000000", borderColor: "#000000" }}
+                  onClick={handleNotSignedIn}
                   underline="none"
                   fontWeight={800}
                 >
@@ -64,6 +79,7 @@ export default function AboutUs() {
                   href="./CreatePost"
                   sx={{ color: "#000000", borderColor: "#000000" }}
                   underline="none"
+                  onClick={handleNotSignedIn}
                   fontWeight={800}
                 >
                   Post
