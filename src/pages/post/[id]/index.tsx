@@ -77,6 +77,7 @@ const SinglePostView = ({
               overflow: "hidden",
               height: "400",
               width: "600",
+              justifyContent: "center"
             }}
           >
             <img
