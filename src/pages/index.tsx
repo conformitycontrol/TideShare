@@ -43,22 +43,24 @@ export default function AboutUs() {
         >
           <Stack
             direction="column"
-            sx={{ display: "flex", justifyConent: "flex-start" }}
+            sx={{ display: "flex", justifyConent: "center", mt: 8 }}
           >
-            <Typography variant="h2" sx={{}}>
+            <Typography variant="h2" sx={{ textAlign: "center"}}>
               SURF MORE
             </Typography>
-            <Typography variant="h2"> + OWN LESS.</Typography>
-            <Box component="div" sx={{ mb: 3, color: "#000000" }}>
-              <Typography variant="h5">
+            <Typography variant="h2" sx={{ textAlign: "center"}}> + OWN LESS.</Typography>
+            <Box component="div" sx={{ mb: 3, color: "#000000", display: "flex", alignItems: "center", mt: 5 }}>
+              <Typography variant="h5" sx={{ textAlign: "center"}}>
                 Your ultimate surfboard rental destination for endless ocean
                 adventures.
               </Typography>
+              </Box>
+              <Box sx={{ justifyContent: "center", display: "flex"}}>
               <Button
                 component="div"
                 variant="contained"
                 href="#"
-                sx={{ mt: 2, borderColor: "#000000" }}
+                sx={{ mt: 2, borderColor: "#000000", justifyContent: "center", display: "flex", width: "90px" }}
               >
                 <Link
                   href="./AllPosts"
@@ -73,7 +75,7 @@ export default function AboutUs() {
               <Button
                 component="div"
                 variant="outlined"
-                sx={{ mt: 2, ml: 2, borderColor: "#000000" }}
+                sx={{ mt: 2, ml: 2, borderColor: "#000000", alignContent: "center", display: "flex", width: "90px" }}
               >
                 <Link
                   href="./CreatePost"
